@@ -14,6 +14,17 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
 .site-nav a{color:#333;text-decoration:none;padding:.6rem}
 .menu-toggle{display:none;background:none;border:0;font-size:1.4rem}
 
+.controls{display:flex;align-items:center;gap:0.75rem}
+.lang-toggle{display:flex;border:1px solid #eee;border-radius:6px;overflow:hidden}
+.lang-btn{background:transparent;border:0;padding:.4rem .6rem;cursor:pointer;font-weight:600}
+.lang-btn[aria-pressed="true"]{background:var(--accent);color:#fff}
+
+/* language visibility */
+body[data-lang="zh"] .lang-zh{display:inline}
+body[data-lang="zh"] .lang-en{display:none}
+body[data-lang="en"] .lang-en{display:inline}
+body[data-lang="en"] .lang-zh{display:none}
+
 .hero{background:linear-gradient(180deg,rgba(122,82,48,0.06),rgba(122,82,48,0.02));padding:3.5rem 0}
 .hero-inner{text-align:center;padding:2rem}
 .hero h1{font-size:clamp(1.6rem,4vw,2.8rem);margin:.3rem 0}

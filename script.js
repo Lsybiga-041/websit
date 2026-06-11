@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded',function(){
+  // Language toggle: load preference
+  const storedLang = localStorage.getItem('site-lang');
+  const body = document.body;
+  if(storedLang) body.setAttribute('data-lang', storedLang);
+  const langZhBtn = document.getElementById('langZh');
+  const langEnBtn = document.getElementById('langEn');
+  function updateLangButtons(){
+    const cur = body.getAttribute('data-lang') || 'zh';
+    if(langZhBtn) langZhBtn.setAttribute('aria-pressed', cur==='zh');
+    if(langEnBtn) langEnBtn.setAttribute('aria-pressed', cur==='en');
+  }
+  updateLangButtons();
+  if(langZhBtn) langZhBtn.addEventListener('click',()=>{ body.setAttribute('data-lang','zh'); localStorage.setItem('site-lang','zh'); updateLangButtons(); });
+  if(langEnBtn) langEnBtn.addEventListener('click',()=>{ body.setAttribute('data-lang','en'); localStorage.setItem('site-lang','en'); updateLangButtons(); });
+
   // Mobile menu
   const menuToggle = document.getElementById('menuToggle');
   const nav = document.getElementById('nav');
