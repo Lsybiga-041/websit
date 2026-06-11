@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cultural Product — Heritage Box</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#hero">Heritage Box</a>
+      <button id="menuToggle" class="menu-toggle" aria-label="Open menu">☰</button>
+      <nav id="nav" class="site-nav">
+        <a href="#story">Story</a>
+        <a href="#background">Cultural Background</a>
+        <a href="#features">Features</a>
+        <a href="#scenarios">Scenarios</a>
+        <a href="#details">Details</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-inner container">
+        <h1>Heritage Box</h1>
+        <p class="tag">A curated cultural product celebrating local craft and stories.</p>
+        <p><a class="btn" href="#details">Explore the Box</a></p>
+      </div>
+    </section>
+
+    <section id="story" class="section container">
+      <h2>Story</h2>
+      <p>Heritage Box was created to connect modern life with timeless traditions. Each box contains handcrafted items sourced from master artisans, along with a booklet telling the stories behind the craft and the people who make it.</p>
+    </section>
+
+    <section id="background" class="section alt container">
+      <h2>Cultural Background</h2>
+      <p>The designs and materials are inspired by regional patterns and ancient techniques passed down through generations. We work directly with communities to ensure cultural respect, fair pay, and sustainable practices.</p>
+    </section>
+
+    <section id="features" class="section container features">
+      <h2>Features</h2>
+      <ul>
+        <li>Handmade artisan products</li>
+        <li>Story booklet and provenance</li>
+        <li>Sustainable packaging</li>
+        <li>Limited-run seasonal themes</li>
+      </ul>
+    </section>
+
+    <section id="scenarios" class="section alt container">
+      <h2>Scenarios</h2>
+      <p>Perfect as a thoughtful gift, a home accent, or an educational tool for workshops and cultural events. Use it to inspire conversations and support craft economies.</p>
+    </section>
+
+    <section id="details" class="section container details">
+      <h2>Details</h2>
+      <div class="grid">
+        <div>
+          <h3>What's inside</h3>
+          <p>Each box includes 3–5 handcrafted items, a story booklet, and care instructions. Items vary seasonally.</p>
+        </div>
+        <div>
+          <h3>Dimensions & Materials</h3>
+          <p>Carefully packaged with recyclable materials. Items are made from wood, textile, clay, and natural dyes.</p>
+        </div>
+      </div>
+
+      <h3>Gallery</h3>
+      <div id="gallery" class="gallery">
+        <img src="img/Gemini_Generated_Image_l77rz4l77rz4l77r.png" alt="Product 1">
+        <img src="img/Gemini_Generated_Image_r5m93wr5m93wr5m9.png" alt="Product 2">
+        <img src="img/Gemini_Generated_Image_z26o0qz26o0qz26o.png" alt="Product 3">
+      </div>
+    </section>
+
+    <section id="contact" class="section container contact">
+      <h2>Contact</h2>
+      <p>Questions or wholesale inquiries? Send us a note.</p>
+      <form id="contactForm" action="#" onsubmit="return false;">
+        <label>
+          Name
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <div class="form-row">
+          <button class="btn" type="submit">Send</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="close" aria-label="Close">×</button>
+    <img alt="Preview">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
