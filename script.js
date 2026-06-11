@@ -1,70 +1,51 @@
-document.addEventListener('DOMContentLoaded',function(){
-  // Language toggle: load preference
-  const storedLang = localStorage.getItem('site-lang');
-  const body = document.body;
-  if(storedLang) body.setAttribute('data-lang', storedLang);
-  const langZhBtn = document.getElementById('langZh');
-  const langEnBtn = document.getElementById('langEn');
-  function updateLangButtons(){
-    const cur = body.getAttribute('data-lang') || 'zh';
-    if(langZhBtn) langZhBtn.setAttribute('aria-pressed', cur==='zh');
-    if(langEnBtn) langEnBtn.setAttribute('aria-pressed', cur==='en');
+const menuToggle = document.querySelector('.menu-toggle');
+const siteNav = document.querySelector('.site-nav');
+const backToTop = document.getElementById('back-to-top');
+const galleryButtons = document.querySelectorAll('.thumb');
+const mainGalleryImage = document.getElementById('main-gallery-image');
+
+menuToggle.addEventListener('click', () => {
+  siteNav.classList.toggle('open');
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    siteNav.classList.remove('open');
   }
-  updateLangButtons();
-  if(langZhBtn) langZhBtn.addEventListener('click',()=>{ body.setAttribute('data-lang','zh'); localStorage.setItem('site-lang','zh'); updateLangButtons(); });
-  if(langEnBtn) langEnBtn.addEventListener('click',()=>{ body.setAttribute('data-lang','en'); localStorage.setItem('site-lang','en'); updateLangButtons(); });
+});
 
-  // Mobile menu
-  const menuToggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('nav');
-  menuToggle.addEventListener('click',()=>{
-    nav.classList.toggle('show');
+const navLinks = document.querySelectorAll('.site-nav a');
+navLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      siteNav.classList.remove('open');
+    }
   });
+});
 
-  // Smooth scrolling for internal links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',function(e){
-      const href = this.getAttribute('href');
-      if(href.length>1){
-        e.preventDefault();
-        const el = document.querySelector(href);
-        if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); }
-        // close mobile nav on selection
-        if(nav.classList.contains('show')) nav.classList.remove('show');
-      }
-    });
+galleryButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const src = button.dataset.src;
+    if (src && mainGalleryImage) {
+      mainGalleryImage.src = src;
+      galleryButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    }
   });
+});
 
-  // Gallery / lightbox
-  const gallery = document.getElementById('gallery');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
-  const lbClose = lightbox.querySelector('.close');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+});
 
-  gallery.querySelectorAll('img').forEach(img=>{
-    img.addEventListener('click',()=>{
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt || '';
-      lightbox.classList.add('show');
-      lightbox.setAttribute('aria-hidden','false');
-    });
-  });
-  lbClose.addEventListener('click',closeLightbox);
-  lightbox.addEventListener('click',(e)=>{ if(e.target===lightbox) closeLightbox(); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
-  function closeLightbox(){ lightbox.classList.remove('show'); lightbox.setAttribute('aria-hidden','true'); lightboxImg.src=''; }
-
-  // Back to top button
-  const back = document.getElementById('backToTop');
-  window.addEventListener('scroll',()=>{
-    if(window.scrollY>300) back.style.display='block'; else back.style.display='none';
-  });
-  back.addEventListener('click',()=>{ window.scrollTo({top:0,behavior:'smooth'}); });
-
-  // Contact form simple handler
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit',()=>{
-    alert('Thanks — your message was received (demo).');
-    form.reset();
-  });
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
